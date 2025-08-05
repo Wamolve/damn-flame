@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordScript : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
     public GameObject Player;
     public float damage;
     public void Start()
     {
-        damage = Player.GetComponent<PlayerStats>().damage;
+        damage = Player.GetComponent<Stats>().damage;
     }
     public void OnTriggerEnter2D(Collider2D col)
     {

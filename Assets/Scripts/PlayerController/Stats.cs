@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class Stats : MonoBehaviour
 {
-    [Header("Player Stats")]
+    [Header("Stats")]
     public float damage;
     public float health;
     public float armor;

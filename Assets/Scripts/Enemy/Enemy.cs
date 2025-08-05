@@ -166,7 +166,7 @@ public class Enemy : MonoBehaviour
         canAttack = false;
         
         // Наносим урон игроку
-        PlayerStats playerHealth = detectedPlayer.GetComponent<PlayerStats>();
+        Stats playerHealth = detectedPlayer.GetComponent<Stats>();
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(damage);

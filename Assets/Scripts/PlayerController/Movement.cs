@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     public bool is_run;
 
     private float current_speed;
-    private bool is_facing_right = true;
+    private bool is_facing_right;
 
     [Header("Jump Settings")]
     public float jump_force;
@@ -17,46 +17,55 @@ public class Movement : MonoBehaviour
     public Transform ground_check;
     
     [Header("Attack Settings")]
-    public float attackCooldown = 0.5f;
+    public float attackCooldown;
     public GameObject swordCollider;
-    public float swordActiveTime = 0.3f;
+    public float swordActiveTime;
     private float lastAttackTime;
-    private bool isAttacking = false;
-    
-    [Header("Animations")]
-    public Animator anim;
-    
+    private bool isAttacking;
+
+    private AnimationsUpdate update_animations;
+
     private Rigidbody2D rb;
-    private bool is_grounded;
+    public bool is_grounded;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        update_animations = GetComponent<AnimationsUpdate>();
     }
 
     void Update()
     {
-        is_grounded = Physics2D.OverlapCircle(ground_check.position, ground_check_radius, ground_layer);
-
         current_speed = is_run ? run_speed : walk_speed;
 
+        is_grounded = Physics2D.OverlapCircle(ground_check.position, ground_check_radius, ground_layer);
+
         HandleMovementInput();
-        HandleJumpInput();
-        HandleRunInput();
-        HandleAttackInput();
+        Jump();
+        Run();
+        Attack();
 
         UpdateAnimations();
 
-        if(isAttacking && Time.time > lastAttackTime + swordActiveTime)
+        if (isAttacking && Time.time > lastAttackTime + swordActiveTime)
         {
             EndAttack();
         }
     }
+    void Attack()
+    {
+        if (Input.GetMouseButtonDown(0) && Time.time > lastAttackTime + attackCooldown)
+        {
+            StartAttack();
+            lastAttackTime = Time.time;
+        }
+    }
+
     void StartAttack()
     {
         isAttacking = true;
         lastAttackTime = Time.time;
-        anim.SetTrigger("Attack");
+        update_animations.player_animator.SetTrigger("Attack");
         swordCollider.SetActive(true);
     }
 
@@ -73,52 +82,39 @@ public class Movement : MonoBehaviour
         if (moveInput < 0)
         {
             MoveLeft();
-            if (is_facing_right) Flip();
+            if (!is_facing_right) Flip();
         }
         else if (moveInput > 0)
         {
             MoveRight();
-            if (!is_facing_right) Flip();
-        }
-        else
-        {
-            is_run = false;
+            if (is_facing_right) Flip();
         }
     }
 
-    void HandleJumpInput()
+    void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && is_grounded)
-            Jump();
-    }
-
-    void HandleRunInput()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            is_run = true;
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-            is_run = false;
-    }
-
-    void HandleAttackInput()
-    {
-        if (Input.GetMouseButtonDown(0) && Time.time > lastAttackTime + attackCooldown)
         {
-            StartAttack();
-            lastAttackTime = Time.time;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
+            update_animations.player_animator.SetTrigger("Jump");
         }
+    }
+
+    void Run()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) is_run = true;
+        if (Input.GetKeyUp(KeyCode.LeftShift)) is_run = false;
     }
 
     void MoveLeft()
     {
         transform.position += Vector3.left * current_speed * Time.deltaTime;
-        is_run = true;
     }
 
     void MoveRight()
     {
         transform.position += Vector3.right * current_speed * Time.deltaTime;
-        is_run = true;
     }
 
     void Flip()
@@ -129,22 +125,9 @@ public class Movement : MonoBehaviour
         transform.localScale = scale;
     }
 
-    void Jump()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
-        anim.SetTrigger("Jump");
-    }
-
-
     void UpdateAnimations()
     {
-        float moveInput = Input.GetAxisRaw("Horizontal");
-        
-        anim.SetBool("IsGrounded", is_grounded);
-        anim.SetBool("IsRunning", is_run);
-        anim.SetBool("IsIdle", !is_run && is_grounded);
-        anim.SetFloat("VerticalVelocity", rb.velocity.y);
+        update_animations.PlayerAnimationsUpdate();
     }
 
     void OnDrawGizmosSelected()
