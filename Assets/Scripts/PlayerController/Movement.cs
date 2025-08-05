@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -10,12 +8,23 @@ public class Movement : MonoBehaviour
     public bool is_run;
 
     private float current_speed;
+    private bool is_facing_right = true;
 
     [Header("Jump Settings")]
     public float jump_force;
     public float ground_check_radius;
     public LayerMask ground_layer;
     public Transform ground_check;
+    
+    [Header("Attack Settings")]
+    public float attackCooldown = 0.5f;
+    public GameObject swordCollider;
+    public float swordActiveTime = 0.3f;
+    private float lastAttackTime;
+    private bool isAttacking = false;
+    
+    [Header("Animations")]
+    public Animator anim;
     
     private Rigidbody2D rb;
     private bool is_grounded;
@@ -29,45 +38,113 @@ public class Movement : MonoBehaviour
     {
         is_grounded = Physics2D.OverlapCircle(ground_check.position, ground_check_radius, ground_layer);
 
-        if (is_run)
+        current_speed = is_run ? run_speed : walk_speed;
+
+        HandleMovementInput();
+        HandleJumpInput();
+        HandleRunInput();
+        HandleAttackInput();
+
+        UpdateAnimations();
+
+        if(isAttacking && Time.time > lastAttackTime + swordActiveTime)
         {
-            current_speed = run_speed;
+            EndAttack();
+        }
+    }
+    void StartAttack()
+    {
+        isAttacking = true;
+        lastAttackTime = Time.time;
+        anim.SetTrigger("Attack");
+        swordCollider.SetActive(true);
+    }
+
+    void EndAttack()
+    {
+        isAttacking = false;
+        swordCollider.SetActive(false);
+    }
+
+    void HandleMovementInput()
+    {
+        float moveInput = Input.GetAxisRaw("Horizontal");
+
+        if (moveInput < 0)
+        {
+            MoveLeft();
+            if (is_facing_right) Flip();
+        }
+        else if (moveInput > 0)
+        {
+            MoveRight();
+            if (!is_facing_right) Flip();
         }
         else
         {
-            current_speed = walk_speed;
+            is_run = false;
         }
+    }
 
-        if (Input.GetKey(KeyCode.A)) 
-            MoveLeft();
-
-        if (Input.GetKey(KeyCode.D))
-            MoveRight();
-
+    void HandleJumpInput()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && is_grounded)
             Jump();
+    }
 
+    void HandleRunInput()
+    {
         if (Input.GetKeyDown(KeyCode.LeftShift))
             is_run = true;
-
         if (Input.GetKeyUp(KeyCode.LeftShift))
             is_run = false;
     }
 
+    void HandleAttackInput()
+    {
+        if (Input.GetMouseButtonDown(0) && Time.time > lastAttackTime + attackCooldown)
+        {
+            StartAttack();
+            lastAttackTime = Time.time;
+        }
+    }
+
     void MoveLeft()
     {
-        transform.position = transform.position + new Vector3(-1, 0, 0) * current_speed * Time.deltaTime;
+        transform.position += Vector3.left * current_speed * Time.deltaTime;
+        is_run = true;
     }
 
     void MoveRight()
     {
-        transform.position = transform.position + new Vector3(1, 0, 0) * current_speed * Time.deltaTime;
+        transform.position += Vector3.right * current_speed * Time.deltaTime;
+        is_run = true;
+    }
+
+    void Flip()
+    {
+        is_facing_right = !is_facing_right;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
+        anim.SetTrigger("Jump");
+    }
+
+
+    void UpdateAnimations()
+    {
+        float moveInput = Input.GetAxisRaw("Horizontal");
+        
+        anim.SetBool("IsGrounded", is_grounded);
+        anim.SetBool("IsRunning", is_run);
+        anim.SetBool("IsIdle", !is_run && is_grounded);
+        anim.SetFloat("VerticalVelocity", rb.velocity.y);
     }
 
     void OnDrawGizmosSelected()
