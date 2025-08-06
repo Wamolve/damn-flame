@@ -18,8 +18,8 @@ public class MovementSystem : MonoBehaviour
     public Transform ground_check;
     
     [Header("Attack Settings")]
-    public float attack_ñooldown;
-    public GameObject sword_ñollider;
+    public float attack_cooldown;
+    public GameObject sword_collider;
     public float sword_active_time;
     private float last_attack_time;
     private bool is_attacking;
@@ -40,11 +40,13 @@ public class MovementSystem : MonoBehaviour
         current_speed = is_run ? run_speed : walk_speed;
 
         is_grounded = Physics2D.OverlapCircle(ground_check.position, ground_check_radius, ground_layer);
-
-        Movement();
-        Jump();
-        Run();
-        Attack();
+        if (!GetComponent<Stats>().isDead)
+        {
+            Movement();
+            Jump();
+            Run();
+            Attack();
+        }
 
         UpdateAnimations();
 
@@ -55,7 +57,7 @@ public class MovementSystem : MonoBehaviour
     }
     void Attack()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time > last_attack_time + attack_ñooldown)
+        if (Input.GetMouseButtonDown(0) && Time.time > last_attack_time + attack_cooldown)
         {
             StartAttack();
             last_attack_time = Time.time;
@@ -67,13 +69,13 @@ public class MovementSystem : MonoBehaviour
         is_attacking = true;
         last_attack_time = Time.time;
         update_animations.player_animator.SetTrigger("Attack");
-        sword_ñollider.SetActive(true);
+        sword_collider.SetActive(true);
     }
 
     void EndAttack()
     {
         is_attacking = false;
-        sword_ñollider.SetActive(false);
+        sword_collider.SetActive(false);
     }
 
     void Movement()

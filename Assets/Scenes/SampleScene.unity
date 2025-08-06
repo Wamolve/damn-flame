@@ -138,6 +138,8 @@ GameObject:
   - component: {fileID: 46912692}
   - component: {fileID: 46912693}
   - component: {fileID: 46912694}
+  - component: {fileID: 46912695}
+  - component: {fileID: 46912696}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -167,8 +169,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   ground_check: {fileID: 1778137952}
-  "attack_\u0441ooldown": 0.3
-  "sword_\u0441ollider": {fileID: 336660353}
+  attack_cooldown: 0
+  sword_collider: {fileID: 336660353}
   sword_active_time: 0.2
   is_grounded: 0
 --- !u!212 &46912687
@@ -238,7 +240,6 @@ Transform:
   m_Children:
   - {fileID: 1778137952}
   - {fileID: 274103857}
-  - {fileID: 519420032}
   - {fileID: 336660354}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -347,9 +348,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86eab39f1fe4df4983420551c388309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   damage: 45
   health: 100
   armor: 2
+  invisible_damage: 1
 --- !u!114 &46912694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +366,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_animator: {fileID: 46912692}
+--- !u!114 &46912695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46912685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd1795585f4611a5a6d880e8027f7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_visible: 1
+  flame: {fileID: 274103856}
+  player_sprite: {fileID: 46912687}
+--- !u!114 &46912696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46912685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c4bcfcf372e444e80c539e9dfc2957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_stats: {fileID: 0}
+  player_health: 0
+  player_slider: {fileID: 421077144}
 --- !u!1 &81315104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,7 +1368,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 46912688}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -2598,6 +2631,7 @@ SpriteRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 519420032}
   - {fileID: 46912688}
   - {fileID: 202565690}
   - {fileID: 1102649734}

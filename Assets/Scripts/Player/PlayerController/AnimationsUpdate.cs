@@ -10,6 +10,7 @@ public class AnimationsUpdate : MonoBehaviour
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
         MovementSystem movement = gameObject.GetComponent<MovementSystem>();
+        Stats stats = gameObject.GetComponent<Stats>();
         Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
 
         player_animator.SetBool("IsGrounded", movement.is_grounded);
@@ -18,5 +19,6 @@ public class AnimationsUpdate : MonoBehaviour
         player_animator.SetFloat("VerticalVelocity", rb.velocity.y);
         player_animator.SetFloat("VerticalVelocity", rb.velocity.y);
         player_animator.SetBool("isWalk", !movement.is_run && movement.is_walk);
+        player_animator.SetBool("isDead", stats.isDead);
     }
 }

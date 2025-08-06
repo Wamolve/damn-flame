@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Player UI")]
+    public Stats player_stats;
+    public float player_health;
+    public Slider player_slider;
+    public void Start()
     {
-        
+        player_stats = GetComponent<Stats>();
+        player_health = player_stats.health;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        player_health = player_stats.health;
+        player_slider.value = player_health;
     }
 }
