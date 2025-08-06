@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 671d102dfe332e09d956a991570c18e4
+guid: c795de99288487de2a0c8fe4b9ceac44
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,55 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Death_0
+      name: coin2_16x16_0
       rect:
         serializedVersion: 2
-        x: 36
+        x: 0
         y: 0
-        width: 30
-        height: 39
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7acede139500bc3eaa76609fe396f6a1
-      internalID: -212876178
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Death_1
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 0
-        width: 29
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00639b4460f3bcff2a82e3532e199745
-      internalID: -294190562
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Death_2
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 0
-        width: 35
-        height: 39
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b54adf9dd63886f7a9dc5dbb34dabb32
-      internalID: -367158701
+      spriteID: 747b6d9edc0b5f511b3d79280686964c
+      internalID: 1200114499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Death_3
+      name: coin2_16x16_1
       rect:
         serializedVersion: 2
-        x: 493
+        x: 16
         y: 0
-        width: 38
-        height: 39
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31a00571f70981c2bb732b93b745d97c
-      internalID: -999945396
+      spriteID: 52399589b3b2290238a70ac1fdb35039
+      internalID: 1447612802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Death_4
+      name: coin2_16x16_2
       rect:
         serializedVersion: 2
-        x: 612
+        x: 32
         y: 0
-        width: 38
-        height: 39
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90eda005f172978b480ded018a06dcd3
-      internalID: -522009466
+      spriteID: 1225197cb127be677ac66896bc977e3d
+      internalID: 1041416462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Death_5
+      name: coin2_16x16_3
       rect:
         serializedVersion: 2
-        x: 733
+        x: 48
         y: 0
-        width: 37
-        height: 39
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8b013b3822910a4c973bbca3cac52af
-      internalID: -1371048303
+      spriteID: cc93aae98abfcf3b4a85749e6ad46810
+      internalID: -1059053466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Death_6
+      name: coin2_16x16_4
       rect:
         serializedVersion: 2
-        x: 853
+        x: 64
         y: 0
-        width: 40
-        height: 39
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 273cbf947b88d2f099b5d5a7305fafea
-      internalID: -406564029
+      spriteID: 3007d2ec5d3f85a928c1f09487387da7
+      internalID: -221554224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Death_7
+      name: coin2_16x16_5
       rect:
         serializedVersion: 2
-        x: 973
+        x: 80
         y: 0
-        width: 41
-        height: 39
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df35d893b4c068a5193119acd65bab3b
-      internalID: 563240658
+      spriteID: 9494fdfdc3fc4428ab83e93b2b1a4957
+      internalID: -1681248975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Death_8
+      name: coin2_16x16_6
       rect:
         serializedVersion: 2
-        x: 1093
+        x: 96
         y: 0
-        width: 41
-        height: 39
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5a0bf0ec56a57a88932838cfe6ff4ea
-      internalID: 1063065447
+      spriteID: 84b34205f532db4fa9c86a6bd823fe66
+      internalID: -79018416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Death_10
+      name: coin2_16x16_7
       rect:
         serializedVersion: 2
-        x: 265
+        x: 112
         y: 0
-        width: 32
-        height: 39
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,8 +284,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e29fc9d8ba4f9ec0084d8e57cb40f49f
-      internalID: 491376697
+      spriteID: 36bb0671b05cada0698589882186cf79
+      internalID: -1356009456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin2_16x16_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d226555811d1b795080af631786e7a76
+      internalID: 1026532511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin2_16x16_9
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 454adc949ebafd8c29d7ed6a0d4251ef
+      internalID: 1685335887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin2_16x16_10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 240dedad318ab6fe18c6a0ab47cee6de
+      internalID: 1475074640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin2_16x16_11
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5d6e11cb5e67837e8c660a967e31900
+      internalID: 1316795076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin2_16x16_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8ff7d23d3aba6a72afc5a3dee93e4a5
+      internalID: -1155261261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin2_16x16_13
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 286b8e7d0154c78f2ab5f550ea395fe2
+      internalID: 242381966
       vertices: []
       indices: 
       edges: []
@@ -343,17 +427,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _Death_0: -212876178
-      _Death_1: -294190562
-      _Death_10: 491376697
-      _Death_2: -367158701
-      _Death_3: -999945396
-      _Death_4: -522009466
-      _Death_5: -1371048303
-      _Death_6: -406564029
-      _Death_7: 563240658
-      _Death_8: 1063065447
-      _Death_9: -129828738
+      coin2_16x16_0: 1200114499
+      coin2_16x16_1: 1447612802
+      coin2_16x16_10: 1475074640
+      coin2_16x16_11: 1316795076
+      coin2_16x16_12: -1155261261
+      coin2_16x16_13: 242381966
+      coin2_16x16_2: 1041416462
+      coin2_16x16_3: -1059053466
+      coin2_16x16_4: -221554224
+      coin2_16x16_5: -1681248975
+      coin2_16x16_6: -79018416
+      coin2_16x16_7: -1356009456
+      coin2_16x16_8: 1026532511
+      coin2_16x16_9: 1685335887
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
