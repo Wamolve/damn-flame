@@ -35,6 +35,7 @@ public class Stats : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         health -= invisible_damage;
+
         if (!GetComponent<Invisibility>().is_visible && health > 0)
         {
             StartCoroutine(TakeInvisibleDamage());

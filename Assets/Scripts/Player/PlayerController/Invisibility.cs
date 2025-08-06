@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class Invisibility : MonoBehaviour
 {
-    public bool is_visible;
+    [Header("Invisibility Settings")]
+    public Color32 invisible_color = new Color32(0, 136, 173, 100);
     public GameObject flame;
     public SpriteRenderer player_sprite;
-    public void Start()
+
+    public bool is_visible;
+    
+    void Start()
     {
         player_sprite = GetComponent<SpriteRenderer>();
     }
-    public void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && !GetComponent<Stats>().isDead)
         {
@@ -26,18 +30,18 @@ public class Invisibility : MonoBehaviour
             }
         }
     }
-    public void Invisible()
+    void Invisible()
     {
         is_visible = false;
         flame.SetActive(false);
-        player_sprite.color = new Color(1, 1, 1, 50);
+        player_sprite.color = invisible_color;
         GetComponent<Stats>().InvisibleDamage();
     }
-    public void Visible()
+    void Visible()
     {
         is_visible = true;
         flame.SetActive(true);
-        player_sprite.color = new Color(1, 1, 1, 255);
+        player_sprite.color = new Color32(255, 255, 255, 255);
         is_visible = true;
     }
 }
