@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
     public float walk_speed;
     public float run_speed;
     public bool is_run;
+    public bool is_walk;
 
     private float current_speed;
     private bool is_facing_right;
@@ -81,13 +82,19 @@ public class Movement : MonoBehaviour
 
         if (moveInput < 0)
         {
+            is_walk = true;
             MoveLeft();
             if (!is_facing_right) Flip();
         }
         else if (moveInput > 0)
         {
+            is_walk = true;
             MoveRight();
             if (is_facing_right) Flip();
+        }
+        else
+        {
+            is_walk = false;
         }
     }
 
@@ -97,13 +104,16 @@ public class Movement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
-            update_animations.player_animator.SetTrigger("Jump");
         }
     }
 
     void Run()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift)) is_run = true;
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            is_walk = false;
+            is_run = true;
+        }
         if (Input.GetKeyUp(KeyCode.LeftShift)) is_run = false;
     }
 

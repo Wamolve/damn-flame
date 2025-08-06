@@ -17,6 +17,6 @@ public class AnimationsUpdate : MonoBehaviour
         player_animator.SetBool("IsIdle", !movement.is_run && movement.is_grounded);
         player_animator.SetFloat("VerticalVelocity", rb.velocity.y);
         player_animator.SetFloat("VerticalVelocity", rb.velocity.y);
-        player_animator.SetBool("isWalk", !movement.is_run);
+        player_animator.SetBool("isWalk", !movement.is_run && movement.is_walk);
     }
 }
