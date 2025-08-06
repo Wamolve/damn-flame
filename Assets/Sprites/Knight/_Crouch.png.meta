@@ -126,12 +126,12 @@ TextureImporter:
       name: _Crouch_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 0
-        width: 29
-        height: 27
+        x: 53
+        y: 15
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

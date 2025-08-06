@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class MovementSystem : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float walk_speed;
@@ -18,11 +18,11 @@ public class Movement : MonoBehaviour
     public Transform ground_check;
     
     [Header("Attack Settings")]
-    public float attackCooldown;
-    public GameObject swordCollider;
-    public float swordActiveTime;
-    private float lastAttackTime;
-    private bool isAttacking;
+    public float attack_ñooldown;
+    public GameObject sword_ñollider;
+    public float sword_active_time;
+    private float last_attack_time;
+    private bool is_attacking;
 
     private AnimationsUpdate update_animations;
 
@@ -41,56 +41,56 @@ public class Movement : MonoBehaviour
 
         is_grounded = Physics2D.OverlapCircle(ground_check.position, ground_check_radius, ground_layer);
 
-        HandleMovementInput();
+        Movement();
         Jump();
         Run();
         Attack();
 
         UpdateAnimations();
 
-        if (isAttacking && Time.time > lastAttackTime + swordActiveTime)
+        if (is_attacking && Time.time > last_attack_time + sword_active_time)
         {
             EndAttack();
         }
     }
     void Attack()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time > lastAttackTime + attackCooldown)
+        if (Input.GetMouseButtonDown(0) && Time.time > last_attack_time + attack_ñooldown)
         {
             StartAttack();
-            lastAttackTime = Time.time;
+            last_attack_time = Time.time;
         }
     }
 
     void StartAttack()
     {
-        isAttacking = true;
-        lastAttackTime = Time.time;
+        is_attacking = true;
+        last_attack_time = Time.time;
         update_animations.player_animator.SetTrigger("Attack");
-        swordCollider.SetActive(true);
+        sword_ñollider.SetActive(true);
     }
 
     void EndAttack()
     {
-        isAttacking = false;
-        swordCollider.SetActive(false);
+        is_attacking = false;
+        sword_ñollider.SetActive(false);
     }
 
-    void HandleMovementInput()
+    void Movement()
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
 
         if (moveInput < 0)
         {
-            is_walk = true;
             MoveLeft();
             if (!is_facing_right) Flip();
+            is_walk = true;
         }
         else if (moveInput > 0)
         {
-            is_walk = true;
             MoveRight();
             if (is_facing_right) Flip();
+            is_walk = true;
         }
         else
         {
@@ -109,12 +109,9 @@ public class Movement : MonoBehaviour
 
     void Run()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            is_walk = false;
-            is_run = true;
-        }
+        if (Input.GetKeyDown(KeyCode.LeftShift)) is_run = true;
         if (Input.GetKeyUp(KeyCode.LeftShift)) is_run = false;
+
     }
 
     void MoveLeft()

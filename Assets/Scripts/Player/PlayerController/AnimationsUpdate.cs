@@ -9,7 +9,7 @@ public class AnimationsUpdate : MonoBehaviour
     public void PlayerAnimationsUpdate()
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
-        Movement movement = gameObject.GetComponent<Movement>();
+        MovementSystem movement = gameObject.GetComponent<MovementSystem>();
         Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
 
         player_animator.SetBool("IsGrounded", movement.is_grounded);

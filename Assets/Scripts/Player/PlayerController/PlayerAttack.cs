@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public GameObject Player;
-    public float damage;
-    public void Start()
+    private GameObject player;
+
+    private void Awake()
     {
-        damage = Player.GetComponent<Stats>().damage;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
+
     public void OnTriggerEnter2D(Collider2D col)
     {
+        float damage = player.GetComponent<Stats>().damage;
+
         if (col.gameObject.tag == "Enemy")
         {
             col.gameObject.GetComponent<Enemy>().TakeDamage(damage);
