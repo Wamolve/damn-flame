@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float health;
     public float armor;
 
+    [SerializeField] private float difficulty_factor = 0.75f;
+
     //[Header("Enemy Target")]
     //public GameObject detectedPlayer;
     //public float attackRange;
@@ -17,7 +19,7 @@ public class Enemy : MonoBehaviour
 
     //[Header("Enemy Physics")]
     //private Rigidbody2D rb;
-    
+
     //[Header("Detection Settings")]
     //public float detectionDistance;
     //public LayerMask detectionMask;
@@ -59,9 +61,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float take_damage)
     {
-        health -= damage / (armor * 0.7f);
+        health -= take_damage / (armor * difficulty_factor);
     }
 
     //private void DetectPlayer()

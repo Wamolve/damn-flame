@@ -6,18 +6,12 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     [Header("Player UI")]
-    public Stats player_stats;
-    public float player_health;
+    [SerializeField] private float player_health;
     public Slider player_slider;
-    public void Start()
-    {
-        player_stats = GetComponent<Stats>();
-        player_health = player_stats.health;
-    }
 
-    public void Update()
+    void Update()
     {
-        player_health = player_stats.health;
+        player_health = GetComponent<PlayerStats>().GetPlayerHealth;
         player_slider.value = player_health;
     }
 }

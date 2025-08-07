@@ -3,8 +3,9 @@ using UnityEngine;
 public class MovementSystem : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float walk_speed;
-    public float run_speed;
+    [SerializeField] private float walk_speed;
+    [SerializeField] private float run_speed;
+
     public bool is_run;
     public bool is_walk;
 
@@ -12,71 +13,33 @@ public class MovementSystem : MonoBehaviour
     private bool is_facing_right;
 
     [Header("Jump Settings")]
-    public float jump_force;
-    public float ground_check_radius;
-    public LayerMask ground_layer;
-    public Transform ground_check;
-    
-    [Header("Attack Settings")]
-    public float attack_cooldown;
-    public GameObject sword_collider;
-    public float sword_active_time;
-    private float last_attack_time;
-    private bool is_attacking;
+    [SerializeField] private float jump_force;
+    [SerializeField] private float ground_check_radius;
+    [SerializeField] private LayerMask ground_layer;
+    [SerializeField] private Transform ground_check;
 
-    private AnimationsUpdate update_animations;
-
-    private Rigidbody2D rb;
     public bool is_grounded;
 
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        update_animations = GetComponent<AnimationsUpdate>();
-    }
+    private AnimationsUpdate update_animations => GetComponent<AnimationsUpdate>();
+    private Rigidbody2D rb => GetComponent<Rigidbody2D>();
+    
 
     void Update()
     {
         current_speed = is_run ? run_speed : walk_speed;
 
         is_grounded = Physics2D.OverlapCircle(ground_check.position, ground_check_radius, ground_layer);
-        if (!GetComponent<Stats>().isDead)
+
+        if (!GetComponent<PlayerStats>().is_dead)
         {
             Movement();
             Jump();
             Run();
-            Attack();
         }
 
         UpdateAnimations();
-
-        if (is_attacking && Time.time > last_attack_time + sword_active_time)
-        {
-            EndAttack();
-        }
     }
-    void Attack()
-    {
-        if (Input.GetMouseButtonDown(0) && Time.time > last_attack_time + attack_cooldown)
-        {
-            StartAttack();
-            last_attack_time = Time.time;
-        }
-    }
-
-    void StartAttack()
-    {
-        is_attacking = true;
-        last_attack_time = Time.time;
-        update_animations.player_animator.SetTrigger("Attack");
-        sword_collider.SetActive(true);
-    }
-
-    void EndAttack()
-    {
-        is_attacking = false;
-        sword_collider.SetActive(false);
-    }
+    
 
     void Movement()
     {
@@ -113,7 +76,6 @@ public class MovementSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift)) is_run = true;
         if (Input.GetKeyUp(KeyCode.LeftShift)) is_run = false;
-
     }
 
     void MoveLeft()
